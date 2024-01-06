@@ -3,10 +3,12 @@
 
 int main(int argc, const char** argv)
 {
+	int ret = EXIT_FAILURE;
 	try{
 		cv::Mat src = cv::imread("lena.jpg", cv::IMREAD_COLOR);
 		cv::Mat dst;
 		cv::cvtColor(src, dst, cv::COLOR_RGB2GRAY);
+		ret = EXIT_SUCCESS;
 	}
 	catch(cv::Exception& e){
 		std::cout << e.what() << std::endl;
@@ -19,4 +21,5 @@ int main(int argc, const char** argv)
 	}
 
 	int key = getchar();
+	return ret;
 }
