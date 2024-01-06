@@ -5,9 +5,10 @@ int main(int argc, const char** argv)
 {
 	int ret = EXIT_FAILURE;
 	try{
-		cv::Mat src = cv::imread("lena.jpg", cv::IMREAD_COLOR);
+		cv::Mat src = cv::imread("TestingImages/lena.bmp", cv::IMREAD_COLOR);
 		cv::Mat dst;
 		cv::cvtColor(src, dst, cv::COLOR_RGB2GRAY);
+		cv::imwrite("ttt.bmp", dst);
 		ret = EXIT_SUCCESS;
 	}
 	catch(cv::Exception& e){
