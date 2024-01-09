@@ -8,7 +8,7 @@
             "name": "(gdb) Launch",
             "type": "cppdbg",
             "request": "launch",
-            "program": "${workspaceFolder}/build/",
+            "program": "${workspaceFolder}/build/TestOpenImageDebugger",
             "args": [],
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}",
@@ -23,6 +23,14 @@
                     "ignoreFailures": true
                 }
             ]
+        },
+        {
+            "name": "(lldb) Launch",
+            "type": "lldb",
+            "request": "launch",
+            "args": [],
+            "program": "${workspaceFolder}/build/TestOpenImageDebugger",
+            "cwd": "${workspaceFolder}"
         }
     ]
 }
