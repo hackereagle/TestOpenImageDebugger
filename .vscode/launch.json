@@ -30,7 +30,8 @@
             "request": "launch",
             "args": [],
             "program": "${workspaceFolder}/build/TestOpenImageDebugger",
-            "cwd": "${workspaceFolder}"
+            "cwd": "${workspaceFolder}",
+            "initCommands": ["command source ${env:HOME}/.lldbinit"],
         }
     ]
 }

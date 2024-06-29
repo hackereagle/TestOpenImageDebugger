@@ -59,6 +59,10 @@ elif [[ "$OSTYPE" == "darwin"* ]]; then
 	mkdir build
 	cmake -S . -B build -DCMAKE_INSTALL_PREFIX=$installedDir -DQt5_DIR=$(brew --prefix qt5)/lib/cmake/Qt5
 	cmake --build build --config Release --target install -j 4
+	# cd build
+	# qmake .. BUILD_MODE=release PREFIX=$OpenImageDebuggerDir
+	# make -j4
+	# make install
 
 	installedSuccess=1
 else
@@ -72,16 +76,19 @@ fi
 
 echo "OpenImageDebuggerDir: $OpenImageDebuggerDir"
 
-if [[ -f ~/.gdbini ]]; then
-	echo "source $OpenImageDebuggerDir/oid.py" >> ~/.gdbinit
-else
-	echo "source $OpenImageDebuggerDir/oid.py" > ~/.gdbinit
-fi
 
-if [[ -f ~/.lldbini ]]; then
-	echo "command $OpenImageDebuggerDir/oid.py" >> ~/.lldbinit
-else
-	echo "command $OpenImageDebuggerDir/oid.py" > ~/.lldbinit
+if [[ "$OSTYPE" == "linux-gnu"* ]]; then
+	if [[ -f ~/.gdbini ]]; then
+		echo "source $OpenImageDebuggerDir/oid.py" >> ~/.gdbinit
+	else
+		echo "source $OpenImageDebuggerDir/oid.py" > ~/.gdbinit
+	fi
+elif [[ "$OSTYPE" == "darwin"* ]]; then
+	if [[ -f ~/.lldbini ]]; then
+		echo "command $OpenImageDebuggerDir/oid.py" >> ~/.lldbinit
+	else
+		echo "command $OpenImageDebuggerDir/oid.py" > ~/.lldbinit
+	fi
 fi
 
 echo "OpenImageDebugger installation success"
