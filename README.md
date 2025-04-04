@@ -9,7 +9,7 @@ Here are my installation note:
 </p>
 
 ## Preliminary Activity
-In my Mac OS, python interpreter version of lldb is 3.9. It is less than OpenImageDebugger requirement. So we need to install lldb
+In my Mac OS, default python interpreter version of lldb is 3.9. It is less than OpenImageDebugger requirement. So we need to install lldb
 ```bash
 brew install llvm
 ```
