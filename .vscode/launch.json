@@ -31,7 +31,7 @@
             "args": [],
             "program": "${workspaceFolder}/build/TestOpenImageDebugger",
             "cwd": "${workspaceFolder}",
-            "initCommands": ["command source ${env:HOME}/.lldbinit"],
+            "initCommands": ["command script import ${env:HOME}/Documents/programs/OpenImageDebugger/oid.py"],
         }
     ]
 }

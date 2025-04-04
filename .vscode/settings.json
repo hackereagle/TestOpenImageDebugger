@@ -83,5 +83,6 @@
         "__string": "cpp",
         "compare": "cpp",
         "concepts": "cpp"
-    }
+    },
+    "lldb.library": "/opt/homebrew/Cellar/llvm/19.1.7_1/lib/liblldb.19.1.7.dylib"
 }

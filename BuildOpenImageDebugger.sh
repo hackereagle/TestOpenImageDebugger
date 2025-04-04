@@ -1,9 +1,9 @@
 #!/bin/bash
 
-git clone https://github.com/OpenImageDebugger/OpenImageDebugger.git
+# git clone https://github.com/OpenImageDebugger/OpenImageDebugger.git
 cd OpenImageDebugger
-git submodule init
-git submodule update
+# git submodule init
+# git submodule update
 
 OpenImageDebuggerDir=""
 installedSuccess=0
@@ -53,16 +53,11 @@ elif [[ "$OSTYPE" == "darwin"* ]]; then
 	fi
 	OpenImageDebuggerDir=$installedDir/OpenImageDebugger
 
-	# TODO: PKG_CONFIG_PATH need to be set and its value must be from lldb script
-	export PKG_CONFIG_PATH=/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/Current/lib/pkgconfig
+	export PKG_CONFIG_PATH=/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/pkgconfig
 	echo $PKG_CONFIG_PATH
 	mkdir build
-	cmake -S . -B build -DCMAKE_INSTALL_PREFIX=$installedDir -DQt5_DIR=$(brew --prefix qt5)/lib/cmake/Qt5
+	cmake -S . -B build -DCMAKE_INSTALL_PREFIX=$installedDir -DQt5_DIR=$(brew --prefix qt5)/lib/cmake/Qt5 -DCMAKE_BUILD_TYPE=Release -DPYTHON_EXECUTABLE=$(which python3.13)
 	cmake --build build --config Release --target install -j 4
-	# cd build
-	# qmake .. BUILD_MODE=release PREFIX=$OpenImageDebuggerDir
-	# make -j4
-	# make install
 
 	installedSuccess=1
 else
@@ -84,11 +79,13 @@ if [[ "$OSTYPE" == "linux-gnu"* ]]; then
 		echo "source $OpenImageDebuggerDir/oid.py" > ~/.gdbinit
 	fi
 elif [[ "$OSTYPE" == "darwin"* ]]; then
-	if [[ -f ~/.lldbini ]]; then
-		echo "command $OpenImageDebuggerDir/oid.py" >> ~/.lldbinit
+	if [[ -f ~/.lldbinit ]]; then
+		echo "command script import $OpenImageDebuggerDir/oid.py" >> ~/.lldbinit
 	else
-		echo "command $OpenImageDebuggerDir/oid.py" > ~/.lldbinit
+		echo "command script import $OpenImageDebuggerDir/oid.py" > ~/.lldbinit
 	fi
 fi
 
 echo "OpenImageDebugger installation success"
+
+
