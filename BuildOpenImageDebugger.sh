@@ -1,9 +1,6 @@
 #!/bin/bash
 
-# git clone https://github.com/OpenImageDebugger/OpenImageDebugger.git
 cd OpenImageDebugger
-# git submodule init
-# git submodule update
 
 OpenImageDebuggerDir=""
 installedSuccess=0
@@ -56,7 +53,7 @@ elif [[ "$OSTYPE" == "darwin"* ]]; then
 	export PKG_CONFIG_PATH=/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/pkgconfig
 	echo $PKG_CONFIG_PATH
 	mkdir build
-	cmake -S . -B build -DCMAKE_INSTALL_PREFIX=$installedDir -DQt5_DIR=$(brew --prefix qt5)/lib/cmake/Qt5 -DCMAKE_BUILD_TYPE=Release -DPYTHON_EXECUTABLE=$(which python3.13)
+	cmake -S . -B build -DCMAKE_INSTALL_PREFIX=$installedDir -DQt5_DIR=$(brew --prefix qt5)/lib/cmake/Qt5 -DCMAKE_BUILD_TYPE=Release
 	cmake --build build --config Release --target install -j 4
 
 	installedSuccess=1
