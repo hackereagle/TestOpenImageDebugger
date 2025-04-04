@@ -55,3 +55,32 @@ After modified, execute `BuildOpenImageDebug.sh` script:
 ```bash
 ./BuildOpenImageDebugger
 ```
+
+## Verify Installation
+We can execute it with python. It must same with compiling library.
+```bash
+python3.13 <path-to-OpenImageDebugger-install-path>/oid.py --test
+```
+</br>
+
+## VSCode
+If you want to use OpenImageDebugger in vscode, you must install `CodeLLDB` first.</br>
+In `.vscode/setting.json`, need to add `lldb.library`:
+```bash
+"lldb.library": "/opt/homebrew/Cellar/llvm/19.1.7_1/lib/liblldb.19.1.7.dylib"
+```
+</br>
+
+In `.vscode/launch.json`:
+```bash
+    {
+        "name": "(lldb) Launch",
+        "type": "lldb",
+        "request": "launch",
+        "args": [],
+        "program": "${workspaceFolder}/build/TestOpenImageDebugger",
+        "cwd": "${workspaceFolder}",
+        "initCommands": ["command script import ${env:HOME}/Documents/programs/OpenImageDebugger/oid.py"],
+    },
+```
+Then, you can enjoy debugging image with OpenImageDebugger~
