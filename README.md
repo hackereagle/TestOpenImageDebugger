@@ -4,11 +4,12 @@ The building procedure already become shell script. So just execute `./BuildOpen
 But I only sure Mac OS can work. I am not test linux part.</br>
 </br>
 </br>
+## Mac Installation Note
 Very appreciate JiahangWu's suggestion in ["Does this project still work on Mac OS? #1"](https://github.com/hackereagle/TestOpenImageDebugger/issues/1) </br>
 Here are my installation note:
 </p>
 
-## Preliminary Activity
+### Preliminary Activity
 In my Mac OS, default python interpreter version of lldb is 3.9. It is less than OpenImageDebugger requirement. So we need to install lldb
 ```bash
 brew install llvm
@@ -38,7 +39,7 @@ In my case, output is
 ```
 Therefore, python interpreter version of installed lldb is `3.13.2`.
 
-## Build
+### Build
 First, clone OpenImageDebugger source code
 ```bash
 git clone https://github.com/OpenImageDebugger/OpenImageDebugger.git
@@ -56,14 +57,14 @@ After modified, execute `BuildOpenImageDebug.sh` script:
 ./BuildOpenImageDebugger
 ```
 
-## Verify Installation
+### Verify Installation
 We can execute it with python. It must same with compiling library.
 ```bash
 python3.13 <path-to-OpenImageDebugger-install-path>/oid.py --test
 ```
 </br>
 
-## VSCode
+### VSCode
 If you want to use OpenImageDebugger in vscode, you must install `CodeLLDB` first.</br>
 In `.vscode/setting.json`, need to add `lldb.library`:
 ```bash
